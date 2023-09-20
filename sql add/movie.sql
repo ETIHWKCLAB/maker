@@ -10,6 +10,7 @@ create table movie(
     mTime varchar2(5)
 );
 CREATE sequence seq_movie;
+drop sequence seq_movie;
 /*seq_movie.nextval*/
 alter table movie add constraint pk_movie primary key (mno);
 
