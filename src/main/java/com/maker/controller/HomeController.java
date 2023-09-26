@@ -3,6 +3,8 @@ package com.maker.controller;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +34,15 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
-		
+		Timer scheduler = new Timer();
+		TimerTask task = new TimerTask() {
+			@Override
+			public void run() {
+				DemoController demo = new DemoController();
+				demo.getMovie();
+			}
+		};
+		scheduler.scheduleAtFixedRate(task, 0, 1000*60*60*24);
 		return "home";
 	}
 	

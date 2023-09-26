@@ -1,0 +1,15 @@
+package com.maker.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j;
+
+@Controller
+@RequiredArgsConstructor
+@RequestMapping("/movie/*")
+//@Log4j
+public class MovieController {
+//	public MoiveResult movieList() {	}
+}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maker.mapper.MovieMapper">
+  <select id="selectMovieList" resultType="com.maker.vo.MovieVO">
+  	select * from movie
+  </select>
+  <insert id = "insertMovie">
+  	<selectKey keyProperty="mno" order="BEFORE"
+  		resultType="long">
+  	</selectKey>
+  	insert into movie(mno, mTitle, mComment, mDirect, mChar, mOpen)
+	values(seq_movie.nextval, #{mTitle}, #{mComment},
+		#{mDirect}, #{mChar}, #{mOpen})
+	</insert>
+	<delete id="delete">
+		delete from board where mno = #{mno}
+	</delete>
+	<select id="read" resultType="com.maker.vo.movieVO">
+		select * from movie where mTitle = #{mTitle}
+	</select>
+	<update id="update">
+		update movie set mTime = #{mTime} where mTitle = #{mTitle}
+	</update>
+</mapper>
