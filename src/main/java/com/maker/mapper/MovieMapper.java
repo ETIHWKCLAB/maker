@@ -10,4 +10,5 @@ public interface MovieMapper {
 	public void insert(MovieVO movie);
 	public int delete(String mTitle);
 	public int update(MovieVO movie);
+	public int findByTitle(String mTitle);
 }

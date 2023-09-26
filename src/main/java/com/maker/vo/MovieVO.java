@@ -13,4 +13,15 @@ public class MovieVO {
 	private float mStar;
 	private String mImg;
 	private String mTime;
+	
+	public MovieVO() {}
+	
+	public MovieVO(String mTitle, String mComment,
+			String mDirect,String mChar,String mOpen) {
+		this.mTitle = mTitle;
+		this.mComment = mComment;
+		this.mDirect = mDirect;
+		this.mChar = mChar;
+		this.mOpen = mOpen;
+	}
 }

@@ -6,9 +6,10 @@
   <select id="selectMovieList" resultType="com.maker.vo.MovieVO">
   	select * from movie
   </select>
-  <insert id = "insertMovie">
+  <insert id = "insert">
   	<selectKey keyProperty="mno" order="BEFORE"
   		resultType="long">
+  		select seq_movie.nextval from dual
   	</selectKey>
   	insert into movie(mno, mTitle, mComment, mDirect, mChar, mOpen)
 	values(seq_movie.nextval, #{mTitle}, #{mComment},
@@ -17,10 +18,13 @@
 	<delete id="delete">
 		delete from board where mno = #{mno}
 	</delete>
-	<select id="read" resultType="com.maker.vo.movieVO">
+	<select id="read" resultType="com.maker.vo.MovieVO">
 		select * from movie where mTitle = #{mTitle}
 	</select>
 	<update id="update">
 		update movie set mTime = #{mTime} where mTitle = #{mTitle}
 	</update>
+	<select id="findByTitle" resultType="int">
+		select count(*) from movie where mTitle = #{mTitle}
+	</select>
 </mapper>

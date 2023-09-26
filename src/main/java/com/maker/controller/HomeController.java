@@ -8,6 +8,7 @@ import java.util.TimerTask;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+	@Autowired
+	private MovieAPIController movieAPI;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -36,10 +38,16 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		Timer scheduler = new Timer();
 		TimerTask task = new TimerTask() {
+			
 			@Override
 			public void run() {
-				DemoController demo = new DemoController();
-				demo.getMovie();
+//				try {
+				movieAPI.getMovie();
+//					System.out.println("등록 완료");
+//				}catch(NullPointerException e) {
+//					e.printStackTrace();
+//					System.out.println("등록 실패");
+//				}
 			}
 		};
 		scheduler.scheduleAtFixedRate(task, 0, 1000*60*60*24);

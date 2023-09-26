@@ -17,7 +17,11 @@ public class MovieServiceImpl implements MovieService {
 	@Transactional
 	@Override
 	public void register(MovieVO movie) {
-		mapper.insert(movie);
+		if(mapper.findByTitle(movie.getMTitle())==0) {
+			mapper.insert(movie);
+		} else {
+			System.out.println("이미 존재하는 영화 정보입니다");
+		}
 	}
 
 	@Override
@@ -42,5 +46,10 @@ public class MovieServiceImpl implements MovieService {
 	public boolean modify(MovieVO movie) {
 		boolean modifyResult = mapper.update(movie) == 1;
 		return modifyResult;
+	}
+
+	@Override
+	public int findByTitle(String mTitle) {
+		return mapper.findByTitle(mTitle);
 	}
 }

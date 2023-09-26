@@ -10,4 +10,5 @@ public interface MovieService {
 	boolean modify(MovieVO movie);
 	int remove(String mTitle);
 	List<MovieVO> getList();
+	int findByTitle(String mTitle);
 }

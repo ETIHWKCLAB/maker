@@ -5,25 +5,26 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import com.maker.service.MovieService;
 import com.maker.vo.MovieVO;
 
-
-@RestController
-public class DemoController {
-
+@Component
+public class MovieAPIController {
+	@Autowired
+	private MovieService mSvc;
+	
 	public void getMovie() {
 		System.out.println("json 호출 시작");
     	String movieInfoUrl = "http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/"
-    		+ "search_json2.jsp?collection=kmdb_new2&detail=N&listCount=20"
+    		+ "search_json2.jsp?collection=kmdb_new2&detail=N&listCount=100"
     		+ "&ServiceKey=A0D2TLUK94B6N6478AKI";
 
 	    URL url = null;
@@ -95,20 +96,34 @@ public class DemoController {
 					
 				// 개봉연도
 				String mOpen = (String) movie.get("prodYear");
-					
-				// 전체 정보
-				System.out.println("영화" + i);
-				System.out.println("제목 : " + mTitle);
-				System.out.println("감독 : " + mDirect);
-				System.out.println("배우 : " + mChar);
-				System.out.println("줄거리 : " + mComment);
-				System.out.println("개봉연도 : " + mOpen);
-				System.out.println("============================================================");
-				MovieVO movieVO = new MovieVO();
 				
+				// 장르
+				String mGenre = (String) movie.get("genre");
+				
+				// 등급
+				String mRating = (String) movie.get("rating");
+				
+				// 전체 정보
+				if(!mGenre.equals("에로") & !mTitle.isEmpty()
+						& !mDirect.isEmpty() & !mChar.isEmpty()
+						& !mComment.isEmpty() & !mOpen.isEmpty()
+						& !mGenre.isEmpty() & !mRating.isEmpty()) {
+//					System.out.println("영화" + i);
+//					System.out.println("제목 : " + mTitle);
+//					System.out.println("감독 : " + mDirect);
+//					System.out.println("배우 : " + mChar);
+//					System.out.println("줄거리 : " + mComment);
+//					System.out.println("개봉연도 : " + mOpen);
+//					System.out.println("장르 : " + mGenre);
+//					System.out.println("등급 : " + mRating);
+//					System.out.println("====================================");
+					MovieVO movieVO = new MovieVO(mTitle, mComment,
+							mDirect, mChar, mOpen);
+
+					mSvc.register(movieVO);
+					
+				}
 			}
-		} else {
-			System.out.println("파일이 없습니다.");
 		}
 	}
 }
