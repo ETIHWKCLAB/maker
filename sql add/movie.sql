@@ -1,7 +1,7 @@
 create table movie(
     mno number(10),
-    mTitle varchar2(1000) not null,
-    mComment varchar2(30) not null,
+    mTitle varchar2(30) not null,
+    mComment varchar2(1000) not null,
     mDirect varchar2(30) not null,
     mChar varchar2(30) not null,
     mOpen varchar2(10) not null,
