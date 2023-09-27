@@ -17,11 +17,13 @@ public class MovieVO {
 	public MovieVO() {}
 	
 	public MovieVO(String mTitle, String mComment,
-			String mDirect,String mChar,String mOpen) {
+			String mDirect,String mChar,String mOpen,
+			String mImg) {
 		this.mTitle = mTitle;
 		this.mComment = mComment;
 		this.mDirect = mDirect;
 		this.mChar = mChar;
 		this.mOpen = mOpen;
+		this.mImg = mImg;
 	}
 }

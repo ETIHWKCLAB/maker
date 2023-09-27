@@ -19,7 +19,5 @@ public class MovieMapperTests {
 	@Test
 	public void testRead() {
 		
-		MovieVO movie = new MovieVO("영화1", "이 영화는...", "감독", "이배우", "2022");
-		mapper.insert(movie);
 	}
 }

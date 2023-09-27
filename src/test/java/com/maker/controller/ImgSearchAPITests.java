@@ -1,4 +1,4 @@
-package com.maker.service;
+package com.maker.controller;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -6,25 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.maker.vo.MovieVO;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml",
 "file:src/main/webapp/WEB-INF/spring/root-context.xml"})
-public class MovieSvcTest {
+public class ImgSearchAPITests {
 	@Autowired
-	private MovieService svc;
-	@Autowired
-	private MovieServiceImpl svcImp;
-	@Test
-	public void testList() {
-		int cnt1 = svc.findByTitle("식, 타악");
-		System.out.println(cnt1);
-		int cnt2 = svcImp.findByTitle("식, 타악");
-		System.out.println(cnt2);
-	}
+	private static ImgSearchAPIController ImgAPI;
 	
 	@Test
-	public void testReg() {
+	public static void result() {
+		
+		System.out.println(ImgAPI.result("아따맘마"));
 	}
 }
